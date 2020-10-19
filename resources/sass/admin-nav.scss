@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+.main-nav
+{
+    font-family: 'Raleway', sans-serif;  
+     .navbar
+{
+    padding-right: 5%;
+    background-color:#0558a1;
+    .navbar-brand
+    {
+        img
+        {
+            height: 3rem !important;
+        }
+        margin-left: 2%;
+    }
+    .nav-item
+    {
+        font-size: 17px;
+    }
+    .dropdown-menu
+    {
+        background-color:#0558a1;
+        min-width: 5rem !important;
+        border: transparent;
+    }
+    .dropdown-item
+    {
+        color: white;
+    }
+    .dropdown-item:hover
+    {
+        background-color: inherit;
+    }
+}
+}
