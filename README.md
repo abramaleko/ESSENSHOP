@@ -1,3 +1,4 @@
-<p style="font-size=20px;">ROVIGA</p>
-This is an e-commerce website developed by Abraham Maleko and allows users to order items after being registered in the system before ordering and admin can review and and admin can contact the customers
+<p style="font-size=20px;"><b>ROVIGA<b/></p>
+This is an e-commerce website where customers can add a products and issue request orders and the administrator can receive orders and contact the customer
+
 <p>You warmly welcome to contribute to the project</p>
