@@ -1,6 +1,6 @@
 # Roviga
 
-This is an e-commerce website where customers can add a products and issue request orders and the administrator can receive orders and contact the customer
+This is an e-commerce website where customers can add a products and issue request orders and the administrator can receive and review orders and then contact the customer
 
 ## Feautures
 <ol>
