@@ -25,7 +25,7 @@
 
 /* [2] Transition property for smooth transformation of images */
 .img-hover-zoom img {
-  transition: transform .5s ease;
+  transition: transform .7s cubic-bezier(0, 0.9, 0.74, 0.82);
 }
 
 /* [3] Finally, transforming the image when container gets hovered */
@@ -98,12 +98,6 @@
           </nav> 
 
           <div id="demo" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
             <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -116,14 +110,6 @@
                 <img src="{{asset('images/furniture.jpg')}}" alt="furniture"  class="d-block">
               </div>
             </div>
-            
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
           </div>
           
           <!--products-->
