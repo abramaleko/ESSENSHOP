@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>ROVIGA</title>
+        <title>ESSENSHOP</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -22,7 +22,7 @@
     <body>
             <nav class="navbar navbar-expand-md navbar-light fixed-top">
             <!-- Brand -->
-            <a class="navbar-brand" href="/">R o v i g a</a>
+            <a class="navbar-brand" href="/">E S S E N S H O P</a>
           
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

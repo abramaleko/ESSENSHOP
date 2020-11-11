@@ -22,7 +22,7 @@
     <body>
             <nav class="navbar navbar-expand-md navbar-light fixed-top">
             <!-- Brand -->
-            <a class="navbar-brand" href="/">R o v i g a</a>
+            <a class="navbar-brand" href="/">E S S E N S H O P</a>
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span>

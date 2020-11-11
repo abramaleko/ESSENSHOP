@@ -22,7 +22,7 @@
     <body>
             <nav class="navbar navbar-expand-md navbar-light fixed-top">
             <!-- Brand -->
-            <a class="navbar-brand" href="/">R o v i g a</a>
+            <a class="navbar-brand" href="/">E S S E N S H O P</a>
           
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -82,7 +82,7 @@
               </div>
           </nav> 
             <div class="header-image">
-            <img src="{{asset('images/contactus.jpg')}}" class="img-fluid">
+            <img src="{{asset('images/contact.jpg')}}" class="img-fluid">
             </div>
             <div class="container contact">
                 <div class="row">
@@ -137,7 +137,7 @@
                 <div class="col-md-6 other">
                     <h2>You can also contact us at</h2>
                     <p class="icons"><i class="fas fa-phone"></i>&nbsp;&nbsp;+255 744 646 524</p>
-                    <p class="icons"><i class="fas fa-envelope"></i>&nbsp;&nbsp;info@roviga.co.tz</p>
+                    <p class="icons"><i class="fas fa-envelope"></i>&nbsp;&nbsp;info@essenshop.co.tz</p>
                 </div>
                 </div>
             </div>
