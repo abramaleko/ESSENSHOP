@@ -1,6 +1,6 @@
 # ESSENSHOP
 
-Is an e-commerce web application rich in various feautures that can get you started selling you're products online.
+Is an e-commerce web application which provide a api to get you started developing your application.
 
 ## Feautures
 <ol>
