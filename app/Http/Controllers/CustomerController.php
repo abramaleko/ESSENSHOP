@@ -25,7 +25,7 @@ class CustomerController extends Controller
      //shows the homepage
       if(Auth::user())
       {
-        //if user is logged in
+        //if user is logged in,pass the number of items in the cart to the homepage
         $cartbadge=Cart::where([
           ['user_id','=',auth()->user()->id],
           ['status','=','Pending order'],
@@ -44,9 +44,11 @@ class CustomerController extends Controller
       }
     }
     
-    public function productCategory($id)
+
+    //dispalys the product based on category
+    public function productCategory($category)
     {
-      $products=Products::where('tag',$id)->get();
+      $products=Products::where('tag',$category)->get();
       if(Auth::user())
       {
         $cartbadge=Cart::where([
@@ -60,11 +62,11 @@ class CustomerController extends Controller
            );
            return view('productsCategorized')->with($data);
       }
-      return view('productsCategorized')->with(['products'=>$products,'tag'=>$id]);
-
-     
-   
+      return view('productsCategorized')->with(['products'=>$products,'tag'=>$category]);
     }
+
+
+    //shows the product details
     public function showProduct($id)
     {
         if(Auth::user())
@@ -87,11 +89,15 @@ class CustomerController extends Controller
           return view('product')->with('product',$product);
         }
     }
+
+
+    //adds the product to cart
     public function addToCart(Request $request)
     {
-      //check if item to added to cart is already added by checking the user id is has already added a certain product
       $product_name=$request->input('product_name');
       $user_id=auth()->user()->id;
+    
+      //check if item to added to cart is already added by checking the user id is has already added a certain product
       $check=Cart::where([
           ['user_id','=',$user_id],
           ['product_name','=',$product_name],
@@ -101,7 +107,9 @@ class CustomerController extends Controller
           {
               return json_encode('Item has already been added to cart');
           }
-          else{
+          else
+          {
+            //adds items to cart
             $insert=new Cart;
             $insert->product_id=$request->input('product_id');
             $insert->user_id=$user_id;
@@ -114,8 +122,10 @@ class CustomerController extends Controller
         }
     }
 
+
+
+    //returns the number of items in the cart of the user
     public function cartBadge()
-    //updates the cartbadge
     {
       $cartbadge=Cart::where([
         ['user_id','=',auth()->user()->id],
@@ -123,17 +133,23 @@ class CustomerController extends Controller
         ])->count();
         return $cartbadge;
     }
+
+
+     //shows the cart page
     public function cart()
     {
-           //shows the cart page
+          
            $cartbadge=Cart::where([
             ['user_id','=',auth()->user()->id],
             ['status','=','Pending order'],
             ])->count();
+            
             $cartItems=Cart::where([
             ['user_id','=',auth()->user()->id],
             ['status','=','Pending order'],
           ])->orderBy('cart_id','desc')->get();
+           //fetches the cartItems of the user loged in
+
           $data=array(
             'cartItems'=>$cartItems,
             'cartbadge'=>$cartbadge 
@@ -142,6 +158,8 @@ class CustomerController extends Controller
           return view('cart')->with($data);
     }
 
+
+    //updates the quantity in the cart
     public function updateQuantity(Request $request)
     {
      //this functions updates the quantity of the product in the cart when user changes
@@ -153,22 +171,18 @@ class CustomerController extends Controller
       ])->update(['quantity'=>$quantity]);
       return true;
     }
+
+
+
+    //deletes the item in the cart
     public function deleteitem($id)
     {
      //delete an item in the cart page
       $deleteitem=Cart::where('cart_id',$id)->delete();
       return redirect('/cart');
     }
-    public function confirmDetail(Request $request)
-    {
-       $userDetail=User::find(Auth::user()->id);
-       $subtotal=$request->input('subtotal');
-      return view('confirminfo',[
-        'userDetail'=>$userDetail,
-      'subtotal' => $subtotal
-      ])->render();
-    }
 
+    
     public function addToOrder(Request $request)
     {
       $user_id=auth()->user()->id;
@@ -195,6 +209,8 @@ class CustomerController extends Controller
     ));
     }
 
+
+
     public function requestedOrders()
     {
           //shows the requested orders
@@ -202,65 +218,13 @@ class CustomerController extends Controller
           return view('orders')->with('orders',$orders);
     }
 
+    
+
     public function orderDetail($id)
     {
       $cartDetails=Cart::where('reference_token',$id)->get(); //finds the items in the cart table
       $orderDetails=Orders::where('reference_token',$id)->first();  //find the order corresponding to the token
       return view('orderDetails',['orderDetails'=>$orderDetails,'cartDetails'=>$cartDetails]);
     }
-     public function search(Request $request)
-     {
-       $name=$request->input('search');
-       $name1=substr($name,0,5);
-       $search=Products::where('name',$name)
-       ->orWhere('name','like',$name1.'%')
-       ->get();
-       if(Auth::user())
-     {
-        //if user is logged in
-        $cartbadge=Cart::where([
-          ['user_id','=',auth()->user()->id],
-          ['status','=','Pending order'],
-          ])->count();
-      $data=array(
-        'products'=>$search,
-        'cartbadge'=>$cartbadge 
-      );       
-      return view('search')->with($data);
-     }
-     return view('search')->with('products',$search);
-     }
 
-     public function contactus()
-     {
-     if(Auth::user())
-     {
-        //if user is logged in
-        $cartbadge=Cart::where([
-          ['user_id','=',auth()->user()->id],
-          ['status','=','Pending order'],
-          ])->count();
-         return view('contactus')->with('cartbadge',$cartbadge);
-     }
-        return view('contactus');
-     }
-       
-     public function sendmessage(Request $request)
-     {
-       //validate the message
-       $this->validate($request,[
-          'name'=>'required|string',
-          'email'=>'required|email',
-          'message'=>'required|string',
-       ]);
-        
-       $ins=new Messages;
-       $ins->name=$request->input('name');
-       $ins->email=$request->input('email');
-       $ins->message=$request->input('message');
-       $ins->save();
-
-      return redirect()->back()->with('success','Thanks for getting in touch,we will contact you soon');
-
-     }
 }
