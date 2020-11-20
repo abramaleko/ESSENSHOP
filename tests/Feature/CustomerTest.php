@@ -19,4 +19,5 @@ class CustomerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
 }
