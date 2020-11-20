@@ -9,7 +9,6 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Products;
-use App\Models\Messages;
 
 class CustomerController extends Controller
 {
@@ -39,22 +38,23 @@ class CustomerController extends Controller
       }
       else
       {
+        //if not show the recently added products
         $products=DB::table('products')->orderBy('id','desc')->get();
         return view('index')->with('products',$products);
       }
     }
     
-
     //dispalys the product based on category
     public function productCategory($category)
     {
       $products=Products::where('tag',$category)->get();
-      if(Auth::user())
+      if(Auth::user())  //checks if user is loged in
       {
         $cartbadge=Cart::where([
           ['user_id','=',auth()->user()->id],
           ['status','=','Pending order'],
           ])->count();
+          
           $data=array(
             'products'=>$products,
             'cartbadge'=>$cartbadge ,
@@ -71,12 +71,13 @@ class CustomerController extends Controller
     {
         if(Auth::user())
         {
-           //show the individual product
+           //show the individual products
            $product=DB::table('products')->find($id);
            $cartbadge=Cart::where([
             ['user_id','=',auth()->user()->id],
             ['status','=','Pending order'],
             ])->count();
+            
              $data=array(
              'product'=>$product,
              'cartbadge'=>$cartbadge 
